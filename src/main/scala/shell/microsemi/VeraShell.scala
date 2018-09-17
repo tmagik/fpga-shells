@@ -80,7 +80,7 @@ trait HasPCIe { this: VeraShell =>
     dut.pf_eval_kit_pcie.APB_S_PCLK     := hart_clk_25
     dut.pf_eval_kit_pcie.APB_S_PRESET_N := UInt("b1")
     
-    dut.pf_eval_kit_pcie.AXI_CLK        := hart_clk_125
+    dut.pf_eval_kit_pcie.AXI_CLK        := hart_clk_100
     dut.pf_eval_kit_pcie.AXI_CLK_STABLE := hart_clk_lock
     
     dut.pf_eval_kit_pcie.PCIE_1_TL_CLK_125MHz   := pcie_tl_clk
@@ -225,12 +225,12 @@ abstract class VeraShell(implicit val p: Parameters) extends RawModule {
     PLLInClockParameters(50),
     Seq(
       PLLOutClockParameters(25),
-      PLLOutClockParameters(125),
-      PLLOutClockParameters(125, 31.5)))))
+      PLLOutClockParameters(100),
+      PLLOutClockParameters(100, 31.5)))))
   
   val hart_clk_25     = hart_clk_ccc.io.OUT0_FABCLK_0.get
-  val hart_clk_125    = hart_clk_ccc.io.OUT1_FABCLK_0.get
-  val hart_clk_125_tx = hart_clk_ccc.io.OUT2_FABCLK_0.get
+  val hart_clk_100    = hart_clk_ccc.io.OUT1_FABCLK_0.get
+  val hart_clk_100_tx = hart_clk_ccc.io.OUT2_FABCLK_0.get
   val hart_clk_lock   = hart_clk_ccc.io.PLL_LOCK_0
   
   ref_clk_int.io.A := ref_clk0
