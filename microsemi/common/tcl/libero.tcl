@@ -28,9 +28,10 @@ puts "Chisel config: $chisel_config"
 puts "Chisel board: $chisel_board"
 
 set Prjname "$chisel_model"
-set Proj "./Libero/$Prjname"
+set Proj "./$chisel_config/Libero/$Prjname"
 
-set FPExpressDir "$chisel_build_dir/FlashProExpress"
+#set FPExpressDir "$chisel_build_dir/FPExpress"
+set FPExpressDir "./$chisel_config/FPExpress"
 puts "FlashPro Express folder: $FPExpressDir"
 file mkdir $FPExpressDir
 
@@ -194,7 +195,7 @@ run_tool -name {VERIFYTIMING}
 puts ""
 puts "Checking timing reports"
 
-set reportdir [file join $chisel_build_dir Libero $Prjname designer $Prjname]
+set reportdir [file join $Proj designer $Prjname]
 set reports [glob -directory $reportdir [set Prjname]_\{min,max\}_timing_violations_\{fast,slow\}_\{hv,lv\}_\{lt,ht\}.*]
 set ok true
 set eof true
